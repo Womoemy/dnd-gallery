@@ -6,7 +6,7 @@ import App from './App.jsx'
 import './index.css'
 // import Login from './routes/login.jsx'
 // import { AuthProvider } from './contexts/AuthContext';
-import Login from './components/login';
+import Login from './components/Login';
 // import Home from './components/Home';
 
 const router = createBrowserRouter([
