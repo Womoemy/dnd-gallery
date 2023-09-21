@@ -8,12 +8,12 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyDOyaHPN3dC9ZjafVnyhG-jL6GpBXD4cA8",
+  authDomain: "dnd-gallery-a8c6b.firebaseapp.com",
+  projectId: "dnd-gallery-a8c6b",
+  storageBucket: "dnd-gallery-a8c6b.appspot.com",
+  messagingSenderId: "707204078880",
+  appId: "1:707204078880:web:792b50e3a9910a1d618b45"
 };
 
 // Initialize Firebase
@@ -21,4 +21,4 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Fiebase Authentication and get a reference to the service
 export const auth = getAuth(app);
-export const signIn = signInWithEmailAndPassword
+export const signIn = signInWithEmailAndPassword;
