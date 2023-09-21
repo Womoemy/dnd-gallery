@@ -1,19 +1,20 @@
-import NavBar from "./NavBar";
-import { useAuth } from "../hooks/useAuth";
+// import NavBar from "./NavBar";
+// import 
+// import { useAuth } from "../hooks/useAuth";
 
-const Home = () => {
-    const { currentUser } = useAuth()
+// const Home = () => {
+    // const { currentUser } = useAuth()
 
-    const dragAndDrog = () => {
-        if (currentUser === null) return;
+    // const dragAndDrog = () => {
+    //     if (currentUser === null) return;
 
 
-    }
+    // }
 
-    return (
-        <>
-            <NavBar />
-        </>
-    )
-}
-export default Home;
+//     return (
+//         <>
+//             <NavBar />
+//         </>
+//     )
+// }
+// export default Home;
