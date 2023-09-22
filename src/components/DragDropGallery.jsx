@@ -16,7 +16,7 @@ import {
     arrayMove,
     SortableContext,
     useSortable, 
-    rectSortingStrategy,
+    rectSwappingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 // import SortableImage from "./ImageCard";
@@ -33,7 +33,6 @@ const SortableImage = ({ image }) => {
     const style = { 
         transition, 
         transform: CSS.Transform.toString(transform),
-        touchAction: "manipulation",
     };
 
     return (
@@ -69,13 +68,8 @@ const DragDropGallery = () => {
     const [images, setImages] = useState(imageDB);
     const [searchStr, setSearchStr] = useState("");
 
-    const mouse = useSensor(MouseSensor, {
-        activationConstraint: {
-            delay: 250,
-            tolerance: 5,
-        }
-    });
-    const touch = useSensor(TouchSensor, {
+    const mouse = useSensor(MouseSensor), 
+        touch = useSensor(TouchSensor, {
             activationConstraint: {
                 delay: 250,
                 tolerance: 5,
@@ -165,26 +159,15 @@ const DragDropGallery = () => {
                     />
                 </div>
             </form>
+
+            
             {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4"> */}
             <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-                    <SortableContext items={images} strategy={rectSortingStrategy}>
-                        {
-                        // images.filter((image) => {
-                        //     // return ( 
-                        //     //     searchStr.toLowerCase() === "" ||
-                        //     //     images.tags.some((tag) => 
-                        //     //         tag.toLowerCase().includes(searchStr)
-                        //     //     )    
-                        //     // )
-                        //     return searchStr.toLowerCase() === ""
-                        //         ? image
-                        //         : image.tags.some((tag) => 
-                        //             tag.toLowerCase().includes(searchStr)
-                        //         )
-                        // })
+                    <SortableContext items={images} strategy={rectSwappingStrategy}>
+                        {// images.map((image) => (
                         onFilterImages.map((image) => (
-                            <SortableImage key={image.id}  image={image} onDragEnd={onDragEnd} />
+                            <SortableImage key={image.id}  image={image} />
                         ))}    
                     </SortableContext>
                 </div>

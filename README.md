@@ -60,3 +60,40 @@ Drag-and-Drop Feature: A fully functional drag and drop feature must be implemen
 Responsiveness: Design must be responsive across various desktop  screens, including mobile and tablet screens.
 User Experience: Design must be intuitive, appealing, and encourage easy navigation and operation (i.e., NO LAGGING).
 Image Display: All Images should have consistent spacing and sizing.
+
+
+
+<form className="md:flex items-center  justify-center p-2 mb-4">
+                {/* <label htmlFor="searchBar" className="sr-only">
+                    Search
+                </label> */}
+                <div className="relative w-full lg:w-[500px] ">
+                    {/* <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <BsHash className="w-4 h-4 text-gray-400" />
+                    </div> */}
+                    <input
+                        type="text"
+                        id="searchBar"
+                        value={searchStr}
+                        onChange={(e) => setSearchStr(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:outline-none focus:ring-blue-500 focus:border-blue-600 block w-full pl-10 p-2.5"
+                        placeholder="Search for images by tags..."
+                        required
+                    />
+                </div>
+            </form>
+
+
+            // images.filter((image) => {
+                        //     // return ( 
+                        //     //     searchStr.toLowerCase() === "" ||
+                        //     //     images.tags.some((tag) => 
+                        //     //         tag.toLowerCase().includes(searchStr)
+                        //     //     )    
+                        //     // )
+                        //     return searchStr.toLowerCase() === ""
+                        //         ? image
+                        //         : image.tags.some((tag) => 
+                        //             tag.toLowerCase().includes(searchStr)
+                        //         )
+                        // })
