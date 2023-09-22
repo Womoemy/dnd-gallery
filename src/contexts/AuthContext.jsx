@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { auth, signIn } from '../firebase';
 
-export const AuthContext = React.createContext()
+export const Context = React.createContext()
 
 // eslint-disable-next-line react/prop-types
-export function AuthProvider({ children }) {
+export function AuthContext({ children }) {
     // eslint-disable-next-line no-unused-vars
     const [currentUser, setCurrentUser] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -36,8 +36,8 @@ export function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={value}>
+        <Context.Provider value={value}>
             {children}
-        </AuthContext.Provider>
+        </Context.Provider>
     )
 }

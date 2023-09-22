@@ -1,18 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { AuthProvider } from './contexts/AuthContext'
+import { AuthContext } from './contexts/AuthContext'
 import App from './App.jsx'
 import './index.css'
-// import Login from './routes/login.jsx'
 // import { AuthProvider } from './contexts/AuthContext';
+import { ProtectedRoutes } from './components/ProtectedRoutes';
+
 import Login from './components/Login';
 // import Home from './components/Home';
 
 const router = createBrowserRouter([
   {
     path: "/", 
-    element: <App />
+    element:<ProtectedRoutes><App /></ProtectedRoutes> 
   },
   {
     path: "/login",
@@ -22,8 +23,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
+    <AuthContext>
         <RouterProvider router={router} />
-    </AuthProvider>
+    </AuthContext>
   </React.StrictMode>,
 )
