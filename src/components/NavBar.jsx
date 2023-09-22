@@ -1,11 +1,11 @@
 // import Switcher from '../Switcher'
 import { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
     const [error, setError] = useState("")
-    const { currentUser, logout } = useAuth()
+    const { logout } = useAuth()
     const navigate = useNavigate()
     async function handleLogout() {
         setError("")
@@ -26,15 +26,10 @@ const NavBar = () => {
                 {/* <Switcher style={{ marginBottom: '0' }}/> */}
             
               
-              <div>
-                {currentUser ? (
                   <button onClick={handleLogout}
                     className='text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800'
                   >Log out</button>
-                ) : (
-                  <Link to="/login">Log in</Link>
-                )}
-              </div>
+              
             </div>
       </div>
     )

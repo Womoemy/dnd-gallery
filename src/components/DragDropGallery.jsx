@@ -68,8 +68,8 @@ const DragDropGallery = () => {
     const [images, setImages] = useState(imageDB);
     const [searchStr, setSearchStr] = useState("");
 
-    const mouse = useSensor(MouseSensor), 
-        touch = useSensor(TouchSensor, {
+    const mouse = useSensor(MouseSensor); 
+    const touch = useSensor(TouchSensor, {
             activationConstraint: {
                 delay: 250,
                 tolerance: 5,
@@ -99,44 +99,7 @@ const DragDropGallery = () => {
         );
     });
 
-    // if(!currentUser) {
-    //     return <Navigate to="/login" replace={true} />
-    // } else {
-    //     const mouse = useSensor(MouseSensor),
-    //         touch = useSensor(TouchSensor, {
-    //             activationConstraint: {
-    //                 delay: 250,
-    //                 tolerance: 5,
-    //             }
-    //         });
-    //     const sensors = useSensors(mouse, touch)
-
-    //     // Re-order images after drag and drop
-    //     const onDragEnd = (e) => {
-    //         const { active, over } = e;
-    //         if (active.id === over.id) {
-    //             return;
-    //         }
-    //         setImages((images) => {
-    //             const oldIndex = images.findIndex((image) => image.id === active.id)
-    //             const newIndex = images.findIndex((image) => image.id === over.id)
-    //             return arrayMove(images, oldIndex, newIndex);
-    //         });
-    //     };
-    //     return (
-    //         <div className="w-full h-full my-5 mx-auto">
-    //             <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
-    //                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-    //                     <SortableContext items={images} strategy={rectSortingStrategy}>
-    //                         {images.map((image) => (
-    //                             <SortableImage key={image.id} image={image} />
-    //                         ))}    
-    //                     </SortableContext>
-    //                 </div>
-    //             </DndContext>
-    //         </div>
-    //     )
-    // }
+    
 
     return (
         <div className="w-full h-full my-5 mx-auto bg-gray-50 px-3">

@@ -13,9 +13,11 @@ const Login = () => {
 
     const emailRef = useRef()
     const passwordRef = useRef()
-    const { login, loading, setLoading } = useAuth()
+    const { login, loading, setLoading, setToken } = useAuth()
     const [error, setError] = useState("")
     const navigate = useNavigate()
+
+    // const [currentUser, setCurrentUser] = useState()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -25,7 +27,9 @@ const Login = () => {
         try {
             setError("")
             setLoading(true)
-            await login(emailRef.current.value, passwordRef.current.value);
+            const { user: { accessToken } } = await login(emailRef.current.value, passwordRef.current.value);
+            localStorage.setItem('token', accessToken)
+            setToken(accessToken)
             setLoading(false)
             navigate("/")
         } catch (error){
@@ -35,6 +39,9 @@ const Login = () => {
         }
         
     }
+    // if(currentUser) {
+    //     console.log(`{currentUser.name}`)
+    // }
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">

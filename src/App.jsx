@@ -30,10 +30,4 @@ function App() {
   )
 }
 
-// const PrivateRoute = () => {
-//   return (
-
-//   )
-// }
-
 export default App

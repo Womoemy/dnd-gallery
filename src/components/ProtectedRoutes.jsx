@@ -6,9 +6,9 @@ import { useAuth } from '../hooks/useAuth';
 // eslint-disable-next-line react/prop-types
 export function ProtectedRoutes({children}) {
     // const {currentUser} = useContext(Context);
-    const {currentUser} = useAuth();
+    const {token} = useAuth();
     
-    if(currentUser === null) {
+    if(token === null) {
         return <Navigate to="/login" replace={true} />
     }  else {
         // console.log(children);
