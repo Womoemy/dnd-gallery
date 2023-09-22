@@ -33,6 +33,7 @@ const SortableImage = ({ image }) => {
     const style = { 
         transition, 
         transform: CSS.Transform.toString(transform),
+        touchAction: "manipulation",
     };
 
     return (
@@ -66,14 +67,20 @@ const SortableImage = ({ image }) => {
 const DragDropGallery = () => {  
     // const { currentUser } = useContext(AuthContext);
     const [images, setImages] = useState(imageDB);
+    const [searchStr, setSearchStr] = useState("");
 
-    const mouse = useSensor(MouseSensor),
-        touch = useSensor(TouchSensor, {
+    const mouse = useSensor(MouseSensor, {
+        activationConstraint: {
+            delay: 250,
+            tolerance: 5,
+        }
+    });
+    const touch = useSensor(TouchSensor, {
             activationConstraint: {
                 delay: 250,
                 tolerance: 5,
             }
-        });
+    });
     const sensors = useSensors(mouse, touch)
 
     // Re-order images after drag and drop
@@ -89,8 +96,17 @@ const DragDropGallery = () => {
         });
     };
 
+    const onFilterImages = images.filter((image) => {
+        return (
+            searchStr.toLowerCase() === "" ||
+            image.tags.some((tag) => 
+                tag.toLowerCase().includes(searchStr)
+            ) 
+        );
+    });
+
     // if(!currentUser) {
-    //     return <Navigate to="/login" replace />
+    //     return <Navigate to="/login" replace={true} />
     // } else {
     //     const mouse = useSensor(MouseSensor),
     //         touch = useSensor(TouchSensor, {
@@ -129,16 +145,51 @@ const DragDropGallery = () => {
     // }
 
     return (
-        <div className="w-full h-full my-5 mx-auto">
+        <div className="w-full h-full my-5 mx-auto bg-gray-50 px-3">
+            <form className="md:flex items-center  justify-center p-2 mb-4">
+                {/* <label htmlFor="searchBar" className="sr-only">
+                    Search
+                </label> */}
+                <div className="relative w-full lg:w-[500px] ">
+                    {/* <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <BsHash className="w-4 h-4 text-gray-400" />
+                    </div> */}
+                    <input
+                        type="text"
+                        id="searchBar"
+                        value={searchStr}
+                        onChange={(e) => setSearchStr(e.target.value)}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  focus:outline-none focus:ring-blue-500 focus:border-blue-600 block w-full pl-10 p-2.5"
+                        placeholder="Search for images by tags..."
+                        required
+                    />
+                </div>
+            </form>
+            {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4"> */}
             <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={onDragEnd}>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                     <SortableContext items={images} strategy={rectSortingStrategy}>
-                        {images.map((image) => (
-                            <SortableImage key={image.id} image={image} />
+                        {
+                        // images.filter((image) => {
+                        //     // return ( 
+                        //     //     searchStr.toLowerCase() === "" ||
+                        //     //     images.tags.some((tag) => 
+                        //     //         tag.toLowerCase().includes(searchStr)
+                        //     //     )    
+                        //     // )
+                        //     return searchStr.toLowerCase() === ""
+                        //         ? image
+                        //         : image.tags.some((tag) => 
+                        //             tag.toLowerCase().includes(searchStr)
+                        //         )
+                        // })
+                        onFilterImages.map((image) => (
+                            <SortableImage key={image.id}  image={image} onDragEnd={onDragEnd} />
                         ))}    
                     </SortableContext>
                 </div>
             </DndContext>
+            {/* </div> */}
         </div>
     )
 }

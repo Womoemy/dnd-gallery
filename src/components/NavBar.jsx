@@ -19,8 +19,8 @@ const NavBar = () => {
         console.log(error);
     }
     return (
-        <div className='flex justify-between bg-gray-100 dark:bg-gray-900 px-3 w-full h-16 items-center'>
-            <h1 className='dark:text-gray-50 text-xl font-bold' >Drag-and-Drop Gallery</h1>
+        <div className='flex justify-between bg-gray-50 dark:bg-gray-900 px-3 w-full h-16 items-center'>
+            <h1 className='dark:text-gray-50 text-blue-600 text-xl font-bold' >Drag-and-Drop Gallery</h1>
             <div className='flex justify-between items-center'>
             
                 {/* <Switcher style={{ marginBottom: '0' }}/> */}
